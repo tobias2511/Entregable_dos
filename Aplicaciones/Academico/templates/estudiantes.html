@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block titulo %}
+Estudiantes - Universidad
+{% endblock %}
+
+{% block contenido %}
+<div class="row gx-lg-5">
+    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 py-2">
+        <h1>Agregar Estudiante</h1>
+        <div class="card ">  
+            <div class="card-body ">
+                <form action="/registrarEstudiante/"" method="post">{% csrf_token %}
+                    <div class="form-group py-2">
+                        <input type="text" id="txtNombre" name="txtNombre" class="form-control" placeholder="Nombre" maxlength="50" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="text" id="txtApellido" name="txtApellido" class="form-control" placeholder="Apellido" maxlength="50" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="text" id="txtEmail" name="txtEmail" class="form-control" placeholder="Email" maxlength="50" required>
+                    </div>     
+                    <div class="form-group py-2">
+                       <button type="submit" class="btn btn-success btn-block text-white">Agregar Estudiante</button>
+                    </div>                
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-sl-12 col-md-6 col-lg-8 col-xl-8">
+        <div class="table-responsive py-2">
+            <h1>Listado de Estudiantes</h1>
+            <table class="table talbe-striped py-2">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for e in estudiantes %} 
+                    <tr>
+                        <td>{{e.nombre}}</td>
+                        <td>{{e.apellido}}</td>
+                        <td>{{e.email}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block titulo %}
+Cursos - Universidad
+{% endblock %}
+
+{% block contenido %}
+<div class="row gx-lg-5">
+    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 py-2">
+        <h1>Agregar Curso</h1>
+        <div class="card ">  
+            <div class="card-body ">
+                <form action="/registrarCurso/" method="post">{% csrf_token %}
+                    <div class="form-group py-2">
+                        <input type="text" id="txtNombre" name="txtNombre" class="form-control" placeholder="Nombre del Curso" maxlength="50" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="numComision" name="numComision" class="form-control" placeholder="Comision" minlength="6" maxlength="6" required>
+                    </div>    
+                    <div class="form-group py-2">
+                       <button type="submit" class="btn btn-success btn-block text-white">Agregar Curso</button>
+                    </div>                
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-sl-12 col-md-6 col-lg-8 col-xl-8">
+        <div class="table-responsive py-2">
+            <h1>Listado de Cursos</h1>
+            <table class="table talbe-striped py-2">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Comision</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for c in cursos %} 
+                    <tr>
+                        <td>{{c.nombre}}</td>
+                        <td>{{c.comision}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
